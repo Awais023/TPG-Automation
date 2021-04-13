@@ -107,12 +107,12 @@ public class newCheckout {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			newCheckout_.storeID.sendKeys("9517");
-			newCheckout_.Amount.sendKeys("1");
+			newCheckout_.Amount.sendKeys("100");
 			newCheckout_.orderID.sendKeys("test");
 			newCheckout_.Email.sendKeys("fsl@gmail.com");
 			newCheckout_.phoneNumber.sendKeys("03418780317");
 			newCheckout_.encryptedHashRequest.sendKeys(
-					"AhnopnDigW/VA4XZps3gHX0mKcfMCPr62nYFoJfuIPE4ftLcDGPRExfp3UIAPI7UC0a2T75XR0KazhFu5M2Z/MqIGpXyhV7vzqJWgbzEXAF0P03sUrPLsdIo4Vu0SfcLpgESRtkkGyfrzqf38TvxlVVLBwb8g8FDVspHUYjtuXgIQvJNnP6AD0GPWbKjachnSr/AS0EyZyTuL82uZlaWOQ==");
+					"IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZA2bdzghGrmSXDpo7/NR3T4tKOltAyk2fXD1xo1asA/dA==");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
