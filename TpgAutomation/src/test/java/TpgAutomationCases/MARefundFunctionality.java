@@ -26,7 +26,7 @@ public class MARefundFunctionality extends newCheckout{
 	@FindBy(how = How.XPATH, xpath = "//input[@id='SearchSettlmentForm:j_id2055790156_7a88dfec']")
 	public WebElement searchTransactions;
 	
-	@FindBy(how = How.XPATH, xpath = "//a[@id='settlementTransResultForm:transactionHistoryTable:321229:j_id2055790156_7a88d8cc']")
+	@FindBy(how = How.XPATH, xpath = "/html[1]/body[1]/div[1]/div[2]/div[6]/div[1]/div[1]/form[1]/div[1]/table[1]/tbody[1]/tr[1]/td[13]/div[1]/a[1]")
 	public WebElement clickReverseTransIcon;
 
 	@FindBy(how = How.XPATH, xpath = "/html[1]/body[1]/div[3]/div[3]/div[1]/form[1]/input[2]")
@@ -34,6 +34,9 @@ public class MARefundFunctionality extends newCheckout{
 
 	@FindBy(how = How.XPATH, xpath = "/html[1]/body[1]/div[3]/div[3]/div[1]/form[1]/div[2]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/input[1]")
 	public WebElement clickPartialReverseButton;
+
+	@FindBy(how = How.ID, using = "j_id2055790156_7a88d6af:inputPartialAmount")
+	public WebElement partialAmount;
 
 	@FindBy(how = How.XPATH, xpath = "//td[@id='settlementTransResultForm:transactionHistoryTable:321229:sttlmntStatus']")
 	public WebElement settlementStatus;
@@ -46,7 +49,7 @@ public class MARefundFunctionality extends newCheckout{
 		WebElement clickMAMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(clickMA));
 		clickMAMethod.click();	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//checkout_.placeMAOrder.click();
+	//	checkout_.placeMAOrder.click();
 	}
 	
 	public void gotoSettlementScreen() {
@@ -74,6 +77,7 @@ public class MARefundFunctionality extends newCheckout{
 	public void partialResverseTransaction() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		MA_Refund.clickPartialReverseButton.click();
+		MA_Refund.partialAmount.sendKeys("0.5");
 		MA_Refund.clickYesReverseButton.click();		
 		String status = MA_Refund.settlementStatus.getText();
 		System.out.println("Transaction status has been marked as "+status);
@@ -82,6 +86,7 @@ public class MARefundFunctionality extends newCheckout{
 	public void navigateToMerchantPortalReversalScreen() throws Throwable {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.switchTo().defaultContent();
 			MA_Refund.reversalScreentab.click();
 		} catch (Exception e) {
 			System.out.println(e);
