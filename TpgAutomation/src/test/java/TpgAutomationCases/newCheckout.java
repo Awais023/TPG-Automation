@@ -79,7 +79,7 @@ public class newCheckout {
 
 	By threeDSVerification = By.xpath("/html/body/div/div/div[3]/center/form/table/tbody/tr[13]/td/input");
 	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void launchBrowser() throws Throwable {
 		try {
@@ -112,7 +112,7 @@ public class newCheckout {
 			newCheckout_.Email.sendKeys("fsl@gmail.com");
 			newCheckout_.phoneNumber.sendKeys("03418780317");
 			newCheckout_.encryptedHashRequest.sendKeys(
-					"IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZBegum6jT+WLYw3wnLevZgWGNJ/5Vf/XTE0AFgEUBHg4A==");
+					"IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZA/7TKAZ2N+5pCp6BkdeGpA3vadSj9JIkBOCgn/aLcMAA==");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -152,9 +152,9 @@ public class newCheckout {
 				System.out.print("Select CC Payment Type: ");
 				paymentType = sc.next();
 				if (paymentType.equals("3DS")) {
-					newCheckout_.creditCarNumber.sendKeys("5123456789012346");
+					creditCarNumber.sendKeys("5123456789012346");
 				} else if (paymentType.equals("Non 3DS")) {
-					newCheckout_.creditCarNumber.sendKeys("5111111111111118");
+					creditCarNumber.sendKeys("5111111111111118");
 				}
 				Select expiryMonth = new Select(driver.findElement(By.xpath(
 						"/html/body/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/form/div[1]/div[2]/div/select")));
@@ -162,7 +162,7 @@ public class newCheckout {
 				Select expiryYear = new Select(driver.findElement(By.xpath(
 						"/html/body/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/form/div[1]/div[3]/div/select")));
 				expiryYear.selectByVisibleText("21");
-				newCheckout_.CVV.sendKeys("100");
+				CVV.sendKeys("100");
 			} else {
 				System.out.print("Payment Method not found\n");
 				driver.close();
@@ -177,11 +177,11 @@ public class newCheckout {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if (paymentMethod.equalsIgnoreCase("MA")) {
-				newCheckout_.placeMAOrder.click();
+				placeMAOrder.click();
 			} else if (paymentMethod.equalsIgnoreCase("OTC")) {
-				newCheckout_.placeOTCOrder.click();
+				placeOTCOrder.click();
 			} else if (paymentMethod.equalsIgnoreCase("CC")) {
-				newCheckout_.placeCCOrder.click();
+				placeCCOrder.click();
 				if (paymentType.equals("3DS")) {
 					WebDriverWait wait = new WebDriverWait(driver, 30);
 					wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("insiderForm"));
