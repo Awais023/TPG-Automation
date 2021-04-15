@@ -38,9 +38,18 @@ public class MARefundFunctionality extends newCheckout{
 	@FindBy(how = How.ID, using = "j_id2055790156_7a88d6af:inputPartialAmount")
 	public WebElement partialAmount;
 
-	@FindBy(how = How.XPATH, xpath = "//td[@id='settlementTransResultForm:transactionHistoryTable:321229:sttlmntStatus']")
+	@FindBy(how = How.ID, using = "j_id226064049_d79740f:maintable:792:subTable:0:j_id330006442_4b422154")
 	public WebElement settlementStatus;
 
+	@FindBy(how = How.XPATH, xpath = "//a[contains(text(),'Reversal Report')]")
+	public WebElement reversalReport;
+
+	@FindBy(how = How.ID, using = "searchReversalForm:j_id226064049_d7974fa")
+	public WebElement clickSearchReversalReport;
+	
+	@FindBy(how = How.XPATH, xpath = "//tbody/tr[@id='j_id226064049_d79740f:maintable:0']/td[@id='j_id226064049_d79740f:maintable:792:j_id330006442_4b4227ce']/a[1]")
+	public WebElement clickOpenReversedTransaction;
+	
 
 	public void placeMATransaction() {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -49,7 +58,7 @@ public class MARefundFunctionality extends newCheckout{
 		WebElement clickMAMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(clickMA));
 		clickMAMethod.click();	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	//	checkout_.placeMAOrder.click();
+		checkout_.placeMAOrder.click();
 	}
 	
 	public void gotoSettlementScreen() {
@@ -79,8 +88,6 @@ public class MARefundFunctionality extends newCheckout{
 		MA_Refund.clickPartialReverseButton.click();
 		MA_Refund.partialAmount.sendKeys("0.5");
 		MA_Refund.clickYesReverseButton.click();		
-		String status = MA_Refund.settlementStatus.getText();
-		System.out.println("Transaction status has been marked as "+status);
 	}
 	
 	public void navigateToMerchantPortalReversalScreen() throws Throwable {
@@ -88,6 +95,12 @@ public class MARefundFunctionality extends newCheckout{
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.switchTo().defaultContent();
 			MA_Refund.reversalScreentab.click();
+			MA_Refund.reversalReport.click();
+			driver.switchTo().frame("applicationContent");
+			MA_Refund.clickSearchReversalReport.click();
+			MA_Refund.clickOpenReversedTransaction.click();
+			String status = MA_Refund.settlementStatus.getText();
+			System.out.println("Transaction status has been marked as "+status);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
