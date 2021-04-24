@@ -1,14 +1,7 @@
 package TpgAutomationCases;
 
-import java.awt.FlowLayout;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +14,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class newCheckout {
 	public static WebDriver driver;
@@ -78,9 +79,38 @@ public class newCheckout {
 	public WebElement placeCCOrder;
 
 	By threeDSVerification = By.xpath("/html/body/div/div/div[3]/center/form/table/tbody/tr[13]/td/input");
-	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
+	public static String storeID_ = "9517";
+	public static String Amount_ = "100";
+	public static String orderID_ = "test";
+	public static String email_ = "fsl@gmail.com";
+	public static String phone_ = "03418780317";
+	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZB/JKvISfuFgoW/FOzvOHiVGNJ/5Vf/XTE0AFgEUBHg4A==";
+	public static String CVV_ = "100";
+	public static String _3DSCC = "5123456789012346";
+	public static String _Non3DSCC = "5111111111111118";
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static ExtentSparkReporter spark;
+	public static ExtentReports extent;
+	public static ExtentTest test;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public void setExtent() throws Throwable {
+		try {
+			extent = new ExtentReports();
+			spark = new ExtentSparkReporter("./reports/Spark.html");
+			spark.config().setEncoding("utf-8");
+			spark.config().setDocumentTitle("Automation Report");
+			spark.config().setReportName("Automation Test Resuts");
+			spark.config().setTheme(Theme.STANDARD);
+			extent.attachReporter(spark);
+		} catch (Exception e) {
+			System.out.println("EXTENT REPORTS HAS NOT BEEN INITIATED!.");
+		}
+	}
+
 	public void launchBrowser() throws Throwable {
 		try {
 			System.setProperty("webdriver.chrome.driver",
@@ -88,12 +118,19 @@ public class newCheckout {
 			driver = new ChromeDriver();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			newCheckout_ = PageFactory.initElements(driver, newCheckout.class);
+			test = extent.createTest("Launch Browser")
+					.pass(MarkupHelper.createLabel("Chrome Driver has been Launching.", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Chromer Driver has been launched Successfully.", ExtentColor.GREEN));
+
 		} catch (Exception e) {
 			System.out.println(e);
+			extent.createTest("Launch Browser")
+					.fail(MarkupHelper.createLabel("Chrome Driver has been Launching", ExtentColor.RED));
 		}
 	}
 
 	public void launchTPGNewCheckout() throws Throwable {
+
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.get("https://easypaystg.easypaisa.com.pk/TestStore/new-checkout/uat.jsp");
@@ -106,15 +143,26 @@ public class newCheckout {
 	public void enterCheckoutDetails() {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			newCheckout_.storeID.sendKeys("9517");
-			newCheckout_.Amount.sendKeys("100");
-			newCheckout_.orderID.sendKeys("test");
-			newCheckout_.Email.sendKeys("fsl@gmail.com");
-			newCheckout_.phoneNumber.sendKeys("03418780317");
-			newCheckout_.encryptedHashRequest.sendKeys(
-					"IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZAE0xx5aHvRYqXL8z8G5TR/GNJ/5Vf/XTE0AFgEUBHg4A==");
+			newCheckout_.storeID.sendKeys(storeID_);
+			newCheckout_.Amount.sendKeys(Amount_);
+			newCheckout_.orderID.sendKeys(orderID_);
+			newCheckout_.Email.sendKeys(email_);
+			newCheckout_.phoneNumber.sendKeys(phone_);
+			newCheckout_.encryptedHashRequest.sendKeys(encryptedHashRequest_);
+			test = extent.createTest("Transaction Details on Native Checkout").pass(MarkupHelper
+					.createLabel("TPG Native Checkout Portal For Transactions has been opened.", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Store ID of active store is " + storeID_, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Order ID of Transaction is " + orderID_, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Amount of Transaction is " + Amount_, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Email of Registered User is " + email_, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Phone Number of Registered User is " + phone_, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Valid Encrypted Hash Request has been entered!.", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Transaction Details have been entered.", ExtentColor.GREEN));
 		} catch (Exception e) {
 			System.out.println(e);
+			extent.createTest("Transaction Details").fail(
+					MarkupHelper.createLabel("Transaction Details have not been entered correctly!.", ExtentColor.RED));
+			extent.flush();
 		}
 	}
 
@@ -122,6 +170,8 @@ public class newCheckout {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			newCheckout_.easyPayButton.click();
+			test = extent.createTest("Selecting Payment Method")
+					.pass(MarkupHelper.createLabel("Payment Options Section has been Opened", ExtentColor.GREEN));
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -130,7 +180,6 @@ public class newCheckout {
 
 	public void selectPaymentMethod() {
 		try {
-
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			driver.switchTo().frame("easypay-iframe");
 			sc = new Scanner(System.in);
@@ -138,13 +187,23 @@ public class newCheckout {
 			paymentMethod = sc.next();
 			System.out.print("\n");
 			System.out.print("You have selected " + paymentMethod + " Payment Method\n");
+
 			if (paymentMethod.equalsIgnoreCase("MA")) {
 				WebElement clickMAMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(clickMA));
 				clickMAMethod.click();
+				test = extent.createTest("Enter MA Transaction details").pass(MarkupHelper
+						.createLabel("MA Tranaction Details has been entered successfully!.", ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel("MA Payment Method Section has been loaded successfully!.",
+						ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel("Valid Phone number has been synchronized!", ExtentColor.GREEN));
 			} else if (paymentMethod.equalsIgnoreCase("OTC")) {
 				WebElement clickOTCMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(clickOTC));
 				clickOTCMethod.click();
-
+				test = extent.createTest("Enter OTC Transaction details").pass(MarkupHelper
+						.createLabel("OTC Tranaction Details has been synchronized successfully!.", ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel("OTC Payment Method Section has been loaded successfully!.",
+						ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel("Valid Phone number has been synchronized!", ExtentColor.GREEN));
 			} else if (paymentMethod.equalsIgnoreCase("CC")) {
 				WebElement clickCCMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(clickCC));
 				clickCCMethod.click();
@@ -152,9 +211,9 @@ public class newCheckout {
 				System.out.print("Select CC Payment Type: ");
 				paymentType = sc.next();
 				if (paymentType.equals("3DS")) {
-					creditCarNumber.sendKeys("5123456789012346");
+					newCheckout_.creditCarNumber.sendKeys(_3DSCC);
 				} else if (paymentType.equals("Non 3DS")) {
-					creditCarNumber.sendKeys("5111111111111118");
+					newCheckout_.creditCarNumber.sendKeys(_Non3DSCC);
 				}
 				Select expiryMonth = new Select(driver.findElement(By.xpath(
 						"/html/body/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/form/div[1]/div[2]/div/select")));
@@ -162,14 +221,26 @@ public class newCheckout {
 				Select expiryYear = new Select(driver.findElement(By.xpath(
 						"/html/body/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/form/div[1]/div[3]/div/select")));
 				expiryYear.selectByVisibleText("21");
-				CVV.sendKeys("100");
+				newCheckout_.CVV.sendKeys(CVV_);
+				test = extent.createTest("Enter CC Transaction details").pass(MarkupHelper
+						.createLabel("CC Payment Method Section has been loaded successfully!", ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel("CC Tranaction Details has been entered successfully!.",
+						ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel(
+						"Transaction for Credit Card Number" + _3DSCC + " with CVV" + CVV_ + " has been initiaed",
+						ExtentColor.GREEN));
 			} else {
 				System.out.print("Payment Method not found\n");
 				driver.close();
 				Assert.fail("Invalid Payment Method");
+				test.fail(MarkupHelper.createLabel("Invalid Payment Method!.", ExtentColor.RED));
 			}
 		} catch (Exception e) {
 			System.out.println(e);
+			test.fail(MarkupHelper.createLabel(
+					"Transaction  has not been initiaed",
+					ExtentColor.RED));
+			extent.flush();
 		}
 	}
 
@@ -177,23 +248,41 @@ public class newCheckout {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if (paymentMethod.equalsIgnoreCase("MA")) {
-				placeMAOrder.click();
+				newCheckout_.placeMAOrder.click();
+				test = extent.createTest("Place MA Transaction").pass(
+						MarkupHelper.createLabel("User has placd MA Transaction Successfully!.", ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel(
+						"Success Page of Successfull transaction has been naviagted with valid details",
+						ExtentColor.GREEN));
 			} else if (paymentMethod.equalsIgnoreCase("OTC")) {
-				placeOTCOrder.click();
+				newCheckout_.placeOTCOrder.click();
+				test = extent.createTest("Place MA Transaction").pass(
+						MarkupHelper.createLabel("User has placed OTC Transaction Successfully!.", ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel(
+						"Success Page of Successfull transaction has been naviagted with valid details",
+						ExtentColor.GREEN));
 			} else if (paymentMethod.equalsIgnoreCase("CC")) {
-				placeCCOrder.click();
+				newCheckout_.placeCCOrder.click();
 				if (paymentType.equals("3DS")) {
 					WebDriverWait wait = new WebDriverWait(driver, 30);
 					wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("insiderForm"));
 					WebElement threeDSVerification_ = wait
 							.until(ExpectedConditions.visibilityOfElementLocated(threeDSVerification));
 					threeDSVerification_.click();
+					test = extent.createTest("Place CC Transaction").pass(MarkupHelper
+							.createLabel("User has placed CC Transaction Successfully!.", ExtentColor.GREEN));
+					test.pass(MarkupHelper.createLabel("Transaction for Credit Card Number" + _3DSCC + " with CVV" + CVV_
+							+ " has been placed Successfully", ExtentColor.GREEN));
 				}
 			} else {
 				System.out.print("Transaction Failed.\n");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
+			extent.createTest("Place Transaction").fail(MarkupHelper.createLabel(
+					"Transaction  has not been placed Successfully",
+					ExtentColor.RED));
+			extent.flush();
 
 		}
 	}
