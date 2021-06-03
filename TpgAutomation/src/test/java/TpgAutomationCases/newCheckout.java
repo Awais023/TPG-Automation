@@ -85,8 +85,8 @@ public class newCheckout {
 	public static String Amount_ = "100";
 	public static String orderID_ = "test";
 	public static String email_ = "fsl@gmail.com";
-	public static String phone_ = "03418780317";
-	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0gkCB0NaNI6tIXhig+qYhxzRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZB/JKvISfuFgoW/FOzvOHiVGNJ/5Vf/XTE0AFgEUBHg4A==";
+	public static String phone_ = "03364594224";
+	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZBZgsV3QEkLXgNZFjOrgPXneV/3sE2smUBV41DKX+sgEQ==";
 	public static String CVV_ = "100";
 	public static String _3DSCC = "5123456789012346";
 	public static String _Non3DSCC = "5111111111111118";
