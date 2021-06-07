@@ -34,12 +34,12 @@ public class loginMerchantfunctionality extends newCheckout{
 			driver.get("https://easypaystg.easypaisa.com.pk/easypay-merchant/faces/pg/site/Login.jsf");
 			driver.manage().window().maximize();
 			login_ = PageFactory.initElements(driver, loginMerchantfunctionality.class);
-			test = extent.createTest("TPG Merchant Portal").pass(MarkupHelper.createLabel("TPG Merchant Portal has been opened Successfully!.",ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("Email and Password fields are available for login!.",ExtentColor.GREEN));			
+//			test = extent.createTest("TPG Merchant Portal").pass(MarkupHelper.createLabel("TPG Merchant Portal has been opened Successfully!.",ExtentColor.GREEN));
+//			test.pass(MarkupHelper.createLabel("Email and Password fields are available for login!.",ExtentColor.GREEN));			
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("TPG Merchant Portal").fail(MarkupHelper.createLabel("Merchant Portal has not been loaded successfully!.",ExtentColor.RED));
-			extent.flush();
+//			test = extent.createTest("TPG Merchant Portal").fail(MarkupHelper.createLabel("Merchant Portal has not been loaded successfully!.",ExtentColor.RED));
+//			extent.flush();
 		}
 	}
 

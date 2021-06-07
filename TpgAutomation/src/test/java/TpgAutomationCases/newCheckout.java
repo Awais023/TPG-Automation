@@ -118,14 +118,14 @@ public class newCheckout {
 			driver = new ChromeDriver();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			newCheckout_ = PageFactory.initElements(driver, newCheckout.class);
-			test = extent.createTest("Launch Browser")
-					.pass(MarkupHelper.createLabel("Chrome Driver has been Launching.", ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("Chromer Driver has been launched Successfully.", ExtentColor.GREEN));
+//			test = extent.createTest("Launch Browser")
+//					.pass(MarkupHelper.createLabel("Chrome Driver has been Launching.", ExtentColor.GREEN));
+//			test.pass(MarkupHelper.createLabel("Chromer Driver has been launched Successfully.", ExtentColor.GREEN));
 
 		} catch (Exception e) {
 			System.out.println(e);
-			extent.createTest("Launch Browser")
-					.fail(MarkupHelper.createLabel("Chrome Driver has been Launching", ExtentColor.RED));
+//			extent.createTest("Launch Browser")
+//					.fail(MarkupHelper.createLabel("Chrome Driver has been Launching", ExtentColor.RED));
 		}
 	}
 
