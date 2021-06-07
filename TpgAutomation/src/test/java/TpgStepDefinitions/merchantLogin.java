@@ -14,11 +14,11 @@ public class merchantLogin {
 
 	@Then("^User enters credentials of username and password as Merchant$")
 	public void user_enters_credentials_of_username_and_password_as_Merchant() throws Throwable {
-	//	loginMerchant_.merchantSignUpCredentials();
+		loginMerchant_.merchantSignUpCredentials();
 	}
 
 	@Then("^User clicks on Go Button, Merchant Portal must be opened\\.$")
 	public void user_clicks_on_Go_Button_Merchant_Portal_must_be_opened() throws Throwable {
-		//loginMerchant_.loginToMerchantPortal();
+		loginMerchant_.loginToMerchantPortal();
 	}
 }

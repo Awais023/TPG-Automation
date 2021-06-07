@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 features = "src/test/resources/Features"
 ,glue= {"TpgStepDefinitions"}
-,tags= {"@loginAsMerchant"}
+,tags= {"@MAFullyRefundFunctionality"}
 )
 public class testRunner {
 

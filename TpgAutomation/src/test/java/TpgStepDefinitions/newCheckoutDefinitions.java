@@ -11,7 +11,7 @@ public class newCheckoutDefinitions {
 	
 	@Given("^User has launch the chrome browser\\.$")
 	public void user_has_launch_the_chrome_browser() throws Throwable {
-		//checkout.setExtent();
+		checkout.setExtent();
 		checkout.launchBrowser();
 	}
 
