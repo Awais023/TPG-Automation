@@ -55,7 +55,7 @@ public class newCheckout {
 
 	By clickMA = By.xpath("/html/body/div/div/div/div/div/div/div/div/div[1]/div/div/div/ul/li[1]/span");
 
-	@FindBy(how = How.XPATH, xpath = "/html/body/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/div[1]/form/button")
+	@FindBy(how = How.XPATH, xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/form[1]/button[1]")
 	public WebElement placeMAOrder;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ public class newCheckout {
 	public static String orderID_ = "test";
 	public static String email_ = "fsl@gmail.com";
 	public static String phone_ = "03364594224";
-	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZBZgsV3QEkLXgNZFjOrgPXneV/3sE2smUBV41DKX+sgEQ==";
+	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZALxsG/x8HbEl5Z9lul8H/KENqlhlwiR+4AKBDE9svDQA==";
 	public static String CVV_ = "100";
 	public static String _3DSCC = "5123456789012346";
 	public static String _Non3DSCC = "5111111111111118";
