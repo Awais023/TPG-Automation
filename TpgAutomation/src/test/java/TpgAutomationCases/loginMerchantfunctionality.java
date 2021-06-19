@@ -53,7 +53,7 @@ public class loginMerchantfunctionality extends newCheckout{
 			test = extent.createTest("Enter Merchant Credentials").pass(MarkupHelper.createLabel("Email and Password has been entered",ExtentColor.GREEN));
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("TPG Merchant Portal").fail(MarkupHelper.createLabel("Incoorect Email or password entered!.",ExtentColor.RED));
+			test = extent.createTest("TPG Merchant Portal").fail(MarkupHelper.createLabel("Incorrect Email or password entered!.",ExtentColor.RED));
 			extent.flush();
 		}
 
