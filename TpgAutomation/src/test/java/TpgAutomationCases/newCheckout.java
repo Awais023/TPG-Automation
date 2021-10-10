@@ -81,12 +81,12 @@ public class newCheckout {
 	By threeDSVerification = By.xpath("/html/body/div/div/div[3]/center/form/table/tbody/tr[13]/td/input");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public static String storeID_ = "9517";
+	public static String storeID_ = "641";
 	public static String Amount_ = "100";
 	public static String orderID_ = "test";
 	public static String email_ = "fsl@gmail.com";
 	public static String phone_ = "03364594224";
-	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/H3rTijxcTBNJ2z7kYIoYZBZgsV3QEkLXgNZFjOrgPXneV/3sE2smUBV41DKX+sgEQ==";
+	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/KwxjlOXx+HdVWUQwOp8NRkWDZw/QDZ8MGyCKxghg40WH4bH5m8j8LPEf53Gs5+HYQ==";
 	public static String CVV_ = "100";
 	public static String _3DSCC = "5123456789012346";
 	public static String _Non3DSCC = "5111111111111118";
@@ -102,7 +102,7 @@ public class newCheckout {
 			extent = new ExtentReports();
 			spark = new ExtentSparkReporter("./reports/Spark.html");
 			spark.config().setEncoding("utf-8");
-			spark.config().setDocumentTitle("Automation Report");
+			spark.config().setDocumentTitle("Automations Report");
 			spark.config().setReportName("Automation Test Resuts");
 			spark.config().setTheme(Theme.STANDARD);
 			extent.attachReporter(spark);
@@ -121,6 +121,7 @@ public class newCheckout {
 			test = extent.createTest("Launch Browser")
 					.pass(MarkupHelper.createLabel("Chrome Driver has been Launching.", ExtentColor.GREEN));
 			test.pass(MarkupHelper.createLabel("Chromer Driver has been launched Successfully.", ExtentColor.GREEN));
+			extent.flush();
 
 		} catch (Exception e) {
 			System.out.println(e);
