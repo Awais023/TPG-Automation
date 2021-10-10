@@ -17,8 +17,8 @@ public class adminLogin {
 		adminlogin_.adminSignUpCredentials();
 	}
 
-	@Then("^Admin clicks on Go Button, Merchant Portal must be opened\\.$")
-	public void admin_clicks_on_Go_Button_Merchant_Portal_must_be_opened() throws Throwable {
+	@Then("^Admin clicks on Go Button, Admin Portal must be opened\\.$")
+	public void admin_clicks_on_Go_Button_Admin_Portal_must_be_opened() throws Throwable {
 		adminlogin_.loginToAdminPortal();
 	}
 }

@@ -25,7 +25,7 @@ public class adminLoginFunctionality extends newCheckout{
 
 	
 	public static String adminUserEmail_ = "superadmin@easypay.telenor.pk";
-	public static String adminUserPassword_ = "system@1234";
+	public static String adminUserPassword_ = "System@1234";
 
 
 	public void launchTPGAdminPortal() throws Throwable {
