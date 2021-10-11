@@ -23,8 +23,8 @@ public class loginMerchantfunctionality extends newCheckout{
 	@FindBy(how = How.ID, using = "loginForm:j_id793557914_2f4cba4e")
 	public WebElement merchantLogin;
 	
-	public static String userEmail_ = "sadaf.mumtaz@systemsltd.com";
-	public static String userPassword_ = "System@4321";
+	public static String userEmail_ = "ewptest12@gmail.com";
+	public static String userPassword_ = "System@12345";
 
 
 	public void launchTPGMerchantPortal() throws Throwable {

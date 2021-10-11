@@ -86,7 +86,7 @@ public class newCheckout {
 	public static String orderID_ = "test";
 	public static String email_ = "fsl@gmail.com";
 	public static String phone_ = "03364594224";
-	public static String encryptedHashRequest_ = "IfCVqgaDn5hKs97fDmsEL4eGHt3vwfGyUsaHvu55dL4s+ATip0wKnyGx3ZD7TcL0NbS7mgXYYKW5fMXInex00TRCidkXEepXJiimjANTwq9qAje9Ax0a/bJ2Aersn3EzxEiLoOxd1UvOFwqitOty/KwxjlOXx+HdVWUQwOp8NRkWDZw/QDZ8MGyCKxghg40WH4bH5m8j8LPEf53Gs5+HYQ==";
+	public static String encryptedHashRequest_ = "oUdl7a9TUjGPeUaeN/wOHKiP2/kDmVmRRiQ0ieOe+r3oBSHgAulKOZTRoEY00V8A/o2Z662T6zIMyA085ArCrwJ1irVlqxbWuHdp6hUgkMnmpKyRQMUYgsRqSR0GcGVb9jo3TAn/duhRlnnU0a+T3LbHrxqV3Qu9/k7fyvcoYZRwDSu6tEPG5zt+NoJyk86kVPhkaAwL2Bv0D3BlS8cW0g==";
 	public static String CVV_ = "100";
 	public static String _3DSCC = "5123456789012346";
 	public static String _Non3DSCC = "5111111111111118";
@@ -213,7 +213,7 @@ public class newCheckout {
 				paymentType = sc.next();
 				if (paymentType.equals("3DS")) {
 					newCheckout_.creditCarNumber.sendKeys(_3DSCC);
-				} else if (paymentType.equals("Non 3DS")) {
+				} else if (paymentType.equals("Non3DS")) {
 					newCheckout_.creditCarNumber.sendKeys(_Non3DSCC);
 				}
 				Select expiryMonth = new Select(driver.findElement(By.xpath(
@@ -238,9 +238,7 @@ public class newCheckout {
 			}
 		} catch (Exception e) {
 			System.out.println(e);
-			test.fail(MarkupHelper.createLabel(
-					"Transaction  has not been initiaed",
-					ExtentColor.RED));
+			test.fail(MarkupHelper.createLabel("Transaction  has not been initiaed", ExtentColor.RED));
 			extent.flush();
 		}
 	}
@@ -255,6 +253,7 @@ public class newCheckout {
 				test.pass(MarkupHelper.createLabel(
 						"Success Page of Successfull transaction has been naviagted with valid details",
 						ExtentColor.GREEN));
+				Thread.sleep(9000);
 			} else if (paymentMethod.equalsIgnoreCase("OTC")) {
 				newCheckout_.placeOTCOrder.click();
 				test = extent.createTest("Place MA Transaction").pass(
@@ -272,17 +271,16 @@ public class newCheckout {
 					threeDSVerification_.click();
 					test = extent.createTest("Place CC Transaction").pass(MarkupHelper
 							.createLabel("User has placed CC Transaction Successfully!.", ExtentColor.GREEN));
-					test.pass(MarkupHelper.createLabel("Transaction for Credit Card Number" + _3DSCC + " with CVV" + CVV_
-							+ " has been placed Successfully", ExtentColor.GREEN));
+					test.pass(MarkupHelper.createLabel("Transaction for Credit Card Number" + _3DSCC + " with CVV"
+							+ CVV_ + " has been placed Successfully", ExtentColor.GREEN));
 				}
 			} else {
 				System.out.print("Transaction Failed.\n");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
-			extent.createTest("Place Transaction").fail(MarkupHelper.createLabel(
-					"Transaction  has not been placed Successfully",
-					ExtentColor.RED));
+			extent.createTest("Place Transaction")
+					.fail(MarkupHelper.createLabel("Transaction  has not been placed Successfully", ExtentColor.RED));
 			extent.flush();
 
 		}

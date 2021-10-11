@@ -23,14 +23,16 @@ public class transactionHistory extends newCheckout {
 
 	@FindBy(how = How.ID, using = "searchTransHistoryForm:j_id971029204_39e0b132")
 	public WebElement searchTrxHistory;
+	
+	
 
-	@FindBy(how = How.XPATH, xpath = "//*[@id=\"transactionHistoryForm:transactionHistoryLazyTable:337853:j_id971029204_39e0b66d\"]")
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[1]")
 	public WebElement OPS_ID;
 
-	@FindBy(how = How.XPATH, xpath = "//*[@id=\"transactionHistoryForm:transactionHistoryLazyTable:337853:j_id971029204_39e0b7a7\"]")
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[3]")
 	public WebElement orderID;
 
-	@FindBy(how = How.XPATH, xpath = "//*[@id=\"transactionHistoryForm:transactionHistoryLazyTable:337853:status\"]")
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[7]")
 	public WebElement transactionStatus;
 
 	public void viewTransactionHistory() throws Throwable {

@@ -22,3 +22,5 @@ Scenario: Verify Payment Method has been selected and Details has been entered s
 	Then User clicks Cointue to EasyPay Button
 	When User selects the Payment Method.
 	Then User place the Order.
+	
+	
