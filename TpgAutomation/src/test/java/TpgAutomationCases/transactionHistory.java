@@ -11,10 +11,9 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 public class transactionHistory extends newCheckout {
-	
+
 	transactionHistory trxHistry;
-	
-	
+
 	@FindBy(how = How.XPATH, xpath = "//*[@id=\"j_id558318358_27e9fdb4:MANAGEMERCHANTACCOUNT\"]")
 	public WebElement clickManageMerchant;
 
@@ -23,8 +22,6 @@ public class transactionHistory extends newCheckout {
 
 	@FindBy(how = How.ID, using = "searchTransHistoryForm:j_id971029204_39e0b132")
 	public WebElement searchTrxHistory;
-	
-	
 
 	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[1]")
 	public WebElement OPS_ID;
@@ -36,41 +33,48 @@ public class transactionHistory extends newCheckout {
 	public WebElement transactionStatus;
 
 	public void viewTransactionHistory() throws Throwable {
-		try {		
+		try {
 			trxHistry = PageFactory.initElements(driver, transactionHistory.class);
 			trxHistry.clickManageMerchant.click();
-			trxHistry.clickTrxHistory.click();			
-			test = extent.createTest("TPG Admin Portal").pass(MarkupHelper.createLabel("Transaction history screen is openeing .",ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("Transaction history screen has been opened Successfully.",ExtentColor.GREEN));			
+			trxHistry.clickTrxHistory.click();
+			test = extent.createTest("TPG Admin Portal Transaction History")
+					.pass(MarkupHelper.createLabel("Transaction history screen is openeing...", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Transaction history screen has been opened Successfully.",
+					ExtentColor.GREEN));
+			extent.flush();
 
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("TPG Admin Portal").fail(MarkupHelper.createLabel("Transaction history screen has not been opened Successfully.",ExtentColor.RED));
+			test = extent.createTest("TPG Admin Portal Transaction History").fail(MarkupHelper
+					.createLabel("Transaction history screen has not been opened Successfully.", ExtentColor.RED));
 			extent.flush();
 
 		}
 	}
-	
+
 	public void viewTransaction() throws Throwable {
-		try {		
+		try {
 			driver.switchTo().frame("applicationContent");
 			trxHistry.searchTrxHistory.click();
 			String OPS = trxHistry.OPS_ID.getText();
 			String order_ID = trxHistry.orderID.getText();
-			String status_ =  trxHistry.transactionStatus.getText();
-			test = extent.createTest("TPG Admin Portal").pass(MarkupHelper.createLabel("Transaction history screen is searching latest transaction.",ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("Transaction history screen has searched the latest transaction.",ExtentColor.GREEN));			
-			test.pass(MarkupHelper.createLabel("OPS ID : "+OPS,ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("ORDER ID : "+order_ID,ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("TRANSACTION STATUS : "+status_,ExtentColor.GREEN));
+			String status_ = trxHistry.transactionStatus.getText();
+			test = extent.createTest("Search Transaction History").pass(MarkupHelper
+					.createLabel("Transaction history screen is searching latest transaction...", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("Transaction history screen has searched the latest transaction.",
+					ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("OPS ID : " + OPS, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("ORDER ID : " + order_ID, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("TRANSACTION STATUS : " + status_, ExtentColor.GREEN));
 			extent.flush();
 
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("TPG Admin Portal").fail(MarkupHelper.createLabel("Latest Transaction has not been able to searched",ExtentColor.RED));
+			test = extent.createTest("Search Transaction History").fail(
+					MarkupHelper.createLabel("Transaction history screen has not been searched.", ExtentColor.RED));
 			extent.flush();
 
 		}
 	}
-	
+
 }

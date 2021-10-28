@@ -11,27 +11,26 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 public class merchantSettlementTrxHstry extends newCheckout {
-	
+
 	merchantSettlementTrxHstry merchantSettlement;
-	
+
 	@FindBy(how = How.XPATH, xpath = "//*[@id=\"j_id868571760_179b2e7c:STTLMNTMODULE\"]")
 	public WebElement settlementScreentab_;
-	
+
 	@FindBy(how = How.XPATH, xpath = "//*[@id=\"settlementTransHistory\"]/div[1]/a")
 	public WebElement settlementTransactionHistorytab_;
-	
-	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[1]/div/form/div[2]/div[2]/div[5]/input[2]")
+
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[1]/div/div/div[2]/form/div[2]/div[2]/div[3]/input[2]")
 	public WebElement searchTransactions_;
-	
-	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/form/div[2]/table/tbody[1]/tr[1]/td[3]")
+
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[6]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[3]")
 	public WebElement SettlementOPS_ID;
 
-	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/form/div[2]/table/tbody[1]/tr[1]/td[4]")
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[6]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[4]")
 	public WebElement SettlementOrderID;
 
-	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[5]/div/form/div[2]/table/tbody[1]/tr[1]/td[10]")
+	@FindBy(how = How.XPATH, xpath = "/html/body/div/div[2]/div[6]/div/div/form/div[1]/table/tbody[1]/tr[1]/td[10]")
 	public WebElement SettlementTransactionStatus;
-
 
 	public void gotoSettlementScreen() {
 		try {
@@ -40,11 +39,14 @@ public class merchantSettlementTrxHstry extends newCheckout {
 			merchantSettlement.settlementScreentab_.click();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			merchantSettlement.settlementTransactionHistorytab_.click();
-			test = extent.createTest("TPG Merchant Portal").pass(MarkupHelper.createLabel("Settlement Transaction history screen is openeing .",ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel(" Settlement Transaction history screen has been opened Successfully.",ExtentColor.GREEN));		
+			test = extent.createTest("Merchant Portal Settlement Trx History").pass(MarkupHelper
+					.createLabel("Settlement Transaction history screen is openeing...", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel(" Settlement Transaction history screen has been opened Successfully.",
+					ExtentColor.GREEN));
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("Settlement Screen").fail(MarkupHelper.createLabel("Settlement Transaction history screen ihas not been opened successfully..",ExtentColor.RED));
+			test = extent.createTest("Merchant Portal Settlement Trx History").fail(MarkupHelper.createLabel(
+					"Settlement Transaction history screen ihas not been opened successfully..", ExtentColor.RED));
 			extent.flush();
 		}
 	}
@@ -53,20 +55,24 @@ public class merchantSettlementTrxHstry extends newCheckout {
 		try {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.switchTo().frame("applicationContent");
-			merchantSettlement.searchTransactions_.click();	
+			merchantSettlement.searchTransactions_.click();
 			String OPS = merchantSettlement.SettlementOPS_ID.getText();
 			String order_ID = merchantSettlement.SettlementOrderID.getText();
-			String status_ =  merchantSettlement.SettlementTransactionStatus.getText();
-			test = extent.createTest("TPG Merchant Portal").pass(MarkupHelper.createLabel("Settlement Transaction history screen is searching latest transaction.",ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("Settlement Transaction history screen has searched the latest transaction.",ExtentColor.GREEN));			
-			test.pass(MarkupHelper.createLabel("OPS ID : "+OPS,ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("ORDER ID : "+order_ID,ExtentColor.GREEN));
-			test.pass(MarkupHelper.createLabel("TRANSACTION STATUS : "+status_,ExtentColor.GREEN));
+			String status_ = merchantSettlement.SettlementTransactionStatus.getText();
+			test = extent.createTest("Search Settlement Transaction History Merchant Portal")
+					.pass(MarkupHelper.createLabel(
+							"Settlement Transaction history screen is searching latest transaction...",
+							ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel(
+					"Settlement Transaction history screen has searched the latest transaction.", ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("OPS ID : " + OPS, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("ORDER ID : " + order_ID, ExtentColor.GREEN));
+			test.pass(MarkupHelper.createLabel("TRANSACTION STATUS : " + status_, ExtentColor.GREEN));
 			extent.flush();
 		} catch (Exception e) {
 			System.out.println(e);
-			test = extent.createTest("Search Trannsaction").fail(MarkupHelper.createLabel(
-					"Transaction has not been searched  Successfully and  Reverse Trannsaction icon has not been clicked!.",ExtentColor.RED));
+			test = extent.createTest("Search Settlement Transaction History Merchant Portal").fail(
+					MarkupHelper.createLabel("Transaction has not been searched  Successfully.", ExtentColor.RED));
 			extent.flush();
 		}
 
